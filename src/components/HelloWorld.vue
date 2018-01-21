@@ -48,7 +48,10 @@
 </style>
 
 <style>
-
+.myhome .ivu-layout-header{
+  padding:0;
+  padding-left:35px;
+}
 </style>
 
 <template>
