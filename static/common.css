@@ -1,0 +1,15 @@
+.lf{
+    float: left;
+}
+.rt{
+    float: right;
+}
+.rept{
+    position: relative;
+}
+.center{
+    text-align: center;
+}
+.bold{
+    font-weight: 700;
+}

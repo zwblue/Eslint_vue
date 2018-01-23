@@ -45,23 +45,32 @@
   display: flex;
   flex-direction: column;
 }
+.mycontent {
+  padding: 10px;
+  min-height: 280px;
+  flex: 1;
+  margin: 10px;
+  margin-top: 0;
+  border-radius: 5px;
+  background: #fff;
+  overflow-y: auto;
+}
 </style>
 
 <style>
-.myhome .ivu-layout-header{
-  padding:0;
-  padding-left:35px;
+.myhome .ivu-layout-header {
+  padding: 0;
+  padding-left: 35px;
 }
 </style>
 
 <template>
     <div class="layout myhome">
-
         <Layout>
             <Header>
                 <Menu mode="horizontal" theme="dark" active-name="1">
                     <div class="layout-logo">
-                      <Button type='ghost' style='color:#fff'><Icon type="home"></Icon> 我的主页</Button>
+                      <Button type='ghost' style='color:#fff' @click="goRouter('')"><Icon type="home"></Icon> 我的主页</Button>
                     </div>
                     <div class="layout-nav">
                         <MenuItem name="1">
@@ -97,31 +106,13 @@
             </Header>
             <Layout class="layContent">
                 <Sider hide-trigger class="left-sider">
-                    <Menu active-name="1-2" theme="dark" width="auto" :open-names="['1']">
-                        <Submenu name="1">
+                    <Menu :active-name="activeName" theme="dark" @on-select='selectMenu' width="auto" :open-names="openSubmenu">
+                        <Submenu :name='menu.title' v-for='menu in menus' :key='menu.title' >
                             <template slot="title">
                                 <Icon type="ios-navigate"></Icon>
-                                Item 1
+                               {{menu.title}}
                             </template>
-                            <MenuItem name="1-1">Option 1</MenuItem>
-                            <MenuItem name="1-2">Option 2</MenuItem>
-                            <MenuItem name="1-3">Option 3</MenuItem>
-                        </Submenu>
-                        <Submenu name="2">
-                            <template slot="title">
-                                <Icon type="ios-keypad"></Icon>
-                                Item 2
-                            </template>
-                            <MenuItem name="2-1">Option 1</MenuItem>
-                            <MenuItem name="2-2">Option 2</MenuItem>
-                        </Submenu>
-                        <Submenu name="3">
-                            <template slot="title">
-                                <Icon type="ios-analytics"></Icon>
-                                Item 3
-                            </template>
-                            <MenuItem name="3-1">Option 1</MenuItem>
-                            <MenuItem name="3-2">Option 2</MenuItem>
+                             <MenuItem :name="list.value" v-for="list in menu.children" :key='list.value'>{{list.title}}</MenuItem>
                         </Submenu>
                     </Menu>
                 </Sider>
@@ -131,8 +122,8 @@
                         <BreadcrumbItem>Components</BreadcrumbItem>
                         <BreadcrumbItem>Layout</BreadcrumbItem>
                     </Breadcrumb>
-                    <Content :style="{padding: '10px', minHeight: '280px',flex:'1', margin:'10px',borderRadius:'5px',background: '#fff', overflowY:'auto'}">
-                        Content
+                    <Content  class="mycontent">
+                            <router-view/>
                     </Content>
                 </Layout>
             </Layout>
@@ -140,5 +131,45 @@
     </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      activeName: "vuex",
+      openSubmenu: ["练习测试"],
+      menus: [
+        {
+          title:"练习测试" ,
+          children: [
+            { title: "vuex", value: "vuex" },
+            { title: "vue-router", value: "vuerouter" },
+            { title: "es6", value: "es" }
+          ]
+        },
+        {
+          title: "方法收集",
+          children: [
+            { title: "常用方法", value: "oftenfun" },
+            { title: "常用API", value: "oftenapi" }
+          ]
+        },
+        {
+          title: "插件",
+          children: [{ title: "orgchart", value: "orgchart" }]
+        }
+      ]
+    };
+  },
+  methods: {
+    goRouter(name) {
+      console.log("跳转的路由:", name);
+       console.log(this.$route)
+      this.$router.push(name);
+       console.log(this.$route)
+    },
+    selectMenu(name){
+        console.log("当前展开的菜单为：",name);
+        this.goRouter(name);
+    }
+  }
+};
 </script>

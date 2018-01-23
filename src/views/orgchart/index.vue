@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div id='company'>111</div>
+        <div id='company'>这是个jquery与orgchart的测试</div>
     </div>
 </template>
 <script>
