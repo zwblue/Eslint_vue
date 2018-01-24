@@ -4,13 +4,14 @@ import Hello from "@/components/Hello";
 import OrgChart from "@/views/orgchart";
 import Vuex from "@/views/vuex";
 import Vuerouter from "@/views/vuerouter";
+import routerLink from "@/views/vuerouter/routerLink";
 import Es from "@/views/es";
 import Home from "@/views/Home";
 Vue.use(Router);
 export default new Router({
   routes: [
     {
-      path: "/home",
+      path: "/",
       component: Hello,
       children: [
         {
@@ -35,7 +36,17 @@ export default new Router({
           component: Vuerouter,
           meta:{
             rName:'vuerouter'
-          }
+          },
+          children:[
+            {
+              path:'routerlink',
+              name:'routerlink',
+              component:routerLink,
+              meta:{
+                rName:'routerLink'
+              }
+            }
+          ]
         },
         {
           path: "es",

@@ -22,8 +22,7 @@
   left: 20px;
 }
 .layout-nav {
-  width: 420px;
-  margin: 0 auto;
+  float:right;
   margin-right: 20px;
 }
 .left-sider {
@@ -163,7 +162,7 @@ export default {
     goRouter(name) {
       console.log("跳转的路由:", name);
        console.log(this.$route)
-      this.$router.push(name);
+      this.$router.push("/"+name);
        console.log(this.$route)
     },
     selectMenu(name){

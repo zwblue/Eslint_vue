@@ -4,6 +4,12 @@
 .rt{
     float: right;
 }
+.red{
+    color:#e43937;
+}
+.blue{
+    color: #2d8cf0;
+}
 .rept{
     position: relative;
 }
