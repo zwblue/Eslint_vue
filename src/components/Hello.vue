@@ -122,7 +122,16 @@
                         <BreadcrumbItem>Layout</BreadcrumbItem>
                     </Breadcrumb>
                     <Content  class="mycontent">
+                        <div v-if="$route.meta.rName==='keepalive'">
+                            1111
+                            <keep-alive>
+                                <router-view/>
+                            </keep-alive>
+                        </div>
+                        <div v-else>
+                            22222
                             <router-view/>
+                        </div>
                     </Content>
                 </Layout>
             </Layout>
@@ -141,7 +150,8 @@ export default {
           children: [
             { title: "vuex", value: "vuex" },
             { title: "vue-router", value: "vuerouter" },
-            { title: "es6", value: "es" }
+            { title: "es6", value: "es" },
+             { title: "vue", value: "vueIndex" }
           ]
         },
         {

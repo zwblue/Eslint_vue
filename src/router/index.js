@@ -5,6 +5,8 @@ import OrgChart from "@/views/orgchart";
 import Vuex from "@/views/vuex";
 import Vuerouter from "@/views/vuerouter";
 import routerLink from "@/views/vuerouter/routerLink";
+import vueIndex from "@/views/vue";
+import KeepAlive from "@/views/vue/KeepAlive";
 import Es from "@/views/es";
 import Home from "@/views/Home";
 Vue.use(Router);
@@ -18,32 +20,49 @@ export default new Router({
           path: "",
           name: "Home",
           component: Home,
-          meta:{
-            rName:'我的主页'
+          meta: {
+            rName: "我的主页"
           }
         },
         {
           path: "vuex",
           name: "vuex",
           component: Vuex,
-          meta:{
-            rName:'Vuex'
+          meta: {
+            rName: "Vuex"
+          }
+        },
+        {
+          path: "vueIndex",
+          name: "vueIndex",
+          component: vueIndex,
+          meta: {
+            rName: "vueIndex"
+          },
+          children: []
+        },
+        {
+          path: "keepAlive",
+          name: "keepAlive",
+          component: KeepAlive,
+          meta: {
+            rName: "keepalive"
           }
         },
         {
           path: "vuerouter",
           name: "vuerouter",
           component: Vuerouter,
-          meta:{
-            rName:'vuerouter'
+          meta: {
+            rName: "vuerouter"
           },
-          children:[
+          children: [
             {
-              path:'routerlink',
-              name:'routerlink',
-              component:routerLink,
-              meta:{
-                rName:'routerLink'
+              path: "routerlink",
+              name: "routerlink",
+              component: routerLink,
+              meta: {
+                rName: "routerLink"
               }
             }
           ]
@@ -52,8 +71,8 @@ export default new Router({
           path: "es",
           name: "es",
           component: Es,
-          meta:{
-            rName:'es'
+          meta: {
+            rName: "es"
           }
         },
         {
