@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Hello from "@/components/Hello";
 import OrgChart from "@/views/orgchart";
 import Vuex from "@/views/vuex";
+import Store from "@/views/vuex/store";
 import Vuerouter from "@/views/vuerouter";
 import routerLink from "@/views/vuerouter/routerLink";
 import vueIndex from "@/views/vue";
@@ -30,7 +31,16 @@ export default new Router({
           component: Vuex,
           meta: {
             rName: "Vuex"
-          }
+          },
+          children: [{
+            path: "store",
+            name: "store",
+            component: Store,
+            meta: {
+              rName: "store"
+            },
+            children: []
+          }]
         },
         {
           path: "vueIndex",

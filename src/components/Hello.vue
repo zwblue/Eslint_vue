@@ -45,7 +45,9 @@
   flex-direction: column;
 }
 .mycontent {
-  padding: 10px;
+  position: relative;
+  /* padding: 10px; */
+  box-sizing: border-box;
   min-height: 280px;
   flex: 1;
   margin: 10px;
@@ -122,16 +124,14 @@
                         <BreadcrumbItem>Layout</BreadcrumbItem>
                     </Breadcrumb>
                     <Content  class="mycontent">
-                        <div v-if="$route.meta.rName==='keepalive'">
-                            1111
+                        <!-- <div v-if="$route.meta.rName==='keepalive'">
                             <keep-alive>
                                 <router-view/>
                             </keep-alive>
                         </div>
-                        <div v-else>
-                            22222
+                        <div v-else style='height:100%;'> -->
                             <router-view/>
-                        </div>
+                        <!-- </div> -->
                     </Content>
                 </Layout>
             </Layout>
@@ -142,7 +142,7 @@
 export default {
   data() {
     return {
-      activeName: "vuex",
+      activeName: "",
       openSubmenu: ["练习测试"],
       menus: [
         {
