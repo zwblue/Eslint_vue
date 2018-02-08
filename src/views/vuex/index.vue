@@ -3,13 +3,14 @@
         <div class="title">
           <Row type='flex' justify='center'>
             <Col>
-              <Button type='primary' @click="$router.push('/vuex/store')">$store的用法</Button> 
+              <Button type='primary' @click="$router.push('/vuex/state')">$state的用法</Button> 
+              <Button type='primary' @click="$router.push('/vuex/getter')">$getter的用法</Button> 
             </Col>
           </Row> 
         </div>
-        <div class="content">
+        <Card class="content">
           <router-view></router-view>
-        </div>
+        </card>
     </div>
 </template>
 <script>
@@ -35,12 +36,13 @@ export default {
 }
 .title {
   text-align: center;
+  padding:10px 0;
   font-weight: bold;
   font-size: 20px;
 }
 .content {
   flex: 1;
-  background: #ccc;
-  opacity: 0.3;
+  padding:10px;
+  opacity: 0.9;
 }
 </style>

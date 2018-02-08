@@ -124,14 +124,7 @@
                         <BreadcrumbItem>Layout</BreadcrumbItem>
                     </Breadcrumb>
                     <Content  class="mycontent">
-                        <!-- <div v-if="$route.meta.rName==='keepalive'">
-                            <keep-alive>
-                                <router-view/>
-                            </keep-alive>
-                        </div>
-                        <div v-else style='height:100%;'> -->
                             <router-view/>
-                        <!-- </div> -->
                     </Content>
                 </Layout>
             </Layout>

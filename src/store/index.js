@@ -10,6 +10,11 @@ const store =new Vuex.Store({
             state.username=val
         }
     },
+    getters:{
+        doneDate:state=>{
+            return "名字："+state.username
+        }
+    },
     actions:{
 
     }

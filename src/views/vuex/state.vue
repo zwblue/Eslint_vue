@@ -1,0 +1,23 @@
+<template>
+    <div>
+        <Alert type="success">this.$store.state.username：<span style="color:red;">{{$store.state.username}}</span></Alert>
+        <Alert type="error" >...mapState(['username'])：<span class="red">{{username}}</span></Alert>
+        <Alert type="error"><span class="blue">import {mapState} from 'vuex'</span></Alert>
+    </div>
+</template>
+<script>
+import {mapState} from 'vuex'
+export default {
+  data() {
+    return {};
+  },
+  computed:{...mapState(['username'])},
+  mounted(){
+      console.log("this.$store",this.$store.state.username)
+  }
+};
+</script>
+
+<style>
+
+</style>

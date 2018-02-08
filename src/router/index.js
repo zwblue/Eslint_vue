@@ -3,7 +3,8 @@ import Router from "vue-router";
 import Hello from "@/components/Hello";
 import OrgChart from "@/views/orgchart";
 import Vuex from "@/views/vuex";
-import Store from "@/views/vuex/store";
+import State from "@/views/vuex/state";
+import Getter from "@/views/vuex/getter";
 import Vuerouter from "@/views/vuerouter";
 import routerLink from "@/views/vuerouter/routerLink";
 import vueIndex from "@/views/vue";
@@ -32,15 +33,26 @@ export default new Router({
           meta: {
             rName: "Vuex"
           },
-          children: [{
-            path: "store",
-            name: "store",
-            component: Store,
-            meta: {
-              rName: "store"
+          children: [
+            {
+              path: "state",
+              name: "state",
+              component: State,
+              meta: {
+                rName: "State"
+              },
+              children: []
             },
-            children: []
-          }]
+            {
+              path: "getter",
+              name: "getter",
+              component: Getter,
+              meta: {
+                rName: "Getter"
+              },
+              children: []
+            }
+          ]
         },
         {
           path: "vueIndex",
