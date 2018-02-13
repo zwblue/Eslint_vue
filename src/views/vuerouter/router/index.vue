@@ -1,58 +1,44 @@
 <template>
     <Card class="black">
-        <Alert type="success">1、this.$router.push('/home/vuerouter/routerlink')</Alert>
-        <Alert type="success">2、this.$router.push的用法：
-            <span class="red">this.$router.push({path:'/user/:id',component:User})</span>
+        <Alert type="success">1、将当前的路由换成home：
+            <span class="red"> router.push('home')=== router.push({ path: 'home' }) </span> ====>
+            <Button type='ghost' @click="$router.push('home')">home</Button>
         </Alert>
-        <Alert type="success">3、用来监听路由的变化：
-            <span class="red"> watch:{$route:function(){}}</span>
+        <Alert type="success">2、动态的路由：
+            <span class="red">roter-link :to ='"home"'：</span> ====>
+            <router-link v-bind:to="path">Home</router-link>
+            </span>
         </Alert>
-        <Alert type="success">3、返回之前的路径：
-            <span class="red"> this.$router.go(-1)===this.router.back()</span>
+        <Alert type="success">3、命名的路由,可在vuerouter中获取userId：
+            <span class="red"> router.push({ name: 'user', params: { userId: 123 }}) </span> ====>
+            <Button type='primary' @click="$router.push({ name: 'vuerouter', params: { userId: 123 }})">vuerouter</Button>
         </Alert>
-        <Alert type="error">
-            <span style="color:red;">在用this.$router.push()时或都router-link to=''时一定要用绝对路径：</span>
+        <Alert type="success">4、带查询参数的路由：
+            <span class="red">router.push({ path: 'register', query: { plan: 'private' }})</span> ===>
+            <Button type='success' @click="$router.push({ path: 'register', query: { plan: 'private' }})">register</Button>
         </Alert>
-        <Alert type="error" class="blue">
-            <pre>
-                    {
-                        path:'/',
-                        name:'index',
-                        children:[{
-                            path:""===>嵌套在当前父路由中的子路由
-                            name:'vue'
-                        },{
-                            path:"home",
-                            name:'home',
-                            children:[{
-                                path:'vuerouter',
-                                name:'vuerouter',
-                                chileren:[{
-                                    path:'routerlink',===>/home/vuerouter/routerlink
-                                    name:'routerlink'
-                                }]
-                            }]
-                        }
-                        ]
-                    }
-                </pre>
+        <Alert type="success">5、user/Id与prams的区别： router.push({ name: 'user', params: { userId }}) //->/user/123 router.push({ path: `/user/${userId}` }) // -> /user/123此时路由要做相应的改变，path:"user/:userId" router.push({ path: '/user', params: { userId }}) // -> /user 此时parmas失效
+            <Button type='error' @click="$router.push({ name: 'vuerouter', params: { userId: 3 }})">register</Button>
+            <Button type='error' @click="$router.push({ path: 'vuerouter/3'})">register</Button>
         </Alert>
-        <h1 class="center">router-link的用法</h1>
-        <h2 class="center">
-
-            <h3 class="red center">
-
-            </h3>
-        </h2>
-        <h3 style='margin-left:450px;' class="blue lf">
-
-        </h3>
+        <Alert type="success">6、router.replace(location, onComplete?, onAbort?)的用法，能改变路由中的参数并且不保存在histroy中：
+            <span class="red">router.replace(location, onComplete?, onAbort?)的用法</span> ===>
+            <Button type='ghost' @click="$router.replace('/vuerouter',function(){$route.params.userId=333})">register</Button>
+        </Alert>
+        <Alert type="success">7、router.go的用法：
+            <Button type='primary' size='small' @click="$router.go(1)">router.go(1)</Button>
+            <Button type='primary' size='small' @click="$router.go(-1)">router.go(-1)</Button>
+            <Button type='primary' size='small' @click="$router.go(-2)">router.go(-2)</Button>
+            <Button type='primary' size='small' @click="$router.go(2)">router.go(2)</Button>
+        </Alert>
     </Card>
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      path: "home"
+    };
   }
 };
 </script>

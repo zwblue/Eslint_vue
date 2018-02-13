@@ -1,58 +1,68 @@
 <template>
     <Card class="black">
-        <Alert type="success">1、this.$router.push('/home/vuerouter/routerlink')</Alert>
-        <Alert type="success">2、this.$router.push的用法：
-            <span class="red">this.$router.push({path:'/user/:id',component:User})</span>
+        BAR:
+        <router-view class="view one" name="a"></router-view>
+        BRZ:
+        <router-view class="view one" name="b"></router-view>
+        <Alert type="success">1、name的用法，两个路由视口各自渲染各自的组件：
+            <span class="red">router-view class='view one' name='a'</span> ====>
+            <router-link to='routerviewchild' append>child</router-link>
         </Alert>
-        <Alert type="success">3、用来监听路由的变化：
-            <span class="red"> watch:{$route:function(){}}</span>
+        <Alert type="success">2、name的用法，一个路由地址渲染两个不同的组件：
+            <span class="red">router-view class='view two' name='b'</span> ====>
+            <router-link to='routerviewchild' append>routerviewchild</router-link>
         </Alert>
-        <Alert type="success">3、返回之前的路径：
-            <span class="red"> this.$router.go(-1)===this.router.back()</span>
-        </Alert>
-        <Alert type="error">
-            <span style="color:red;">在用this.$router.push()时或都router-link to=''时一定要用绝对路径：</span>
-        </Alert>
-        <Alert type="error" class="blue">
+        <Alert type="success">3、嵌套路由的设计图：
             <pre>
-                    {
-                        path:'/',
-                        name:'index',
-                        children:[{
-                            path:""===>嵌套在当前父路由中的子路由
-                            name:'vue'
-                        },{
-                            path:"home",
-                            name:'home',
-                            children:[{
-                                path:'vuerouter',
-                                name:'vuerouter',
-                                chileren:[{
-                                    path:'routerlink',===>/home/vuerouter/routerlink
-                                    name:'routerlink'
-                                }]
-                            }]
-                        }
-                        ]
-                    }
-                </pre>
+                 /settings/emails                                       /settings/profile
+            +-----------------------------------+                  +------------------------------+
+            | UserSettings                      |                  | UserSettings                 |
+            | +-----+-------------------------+ |                  | +-----+--------------------+ |
+            | | Nav | UserEmailsSubscriptions | |  +------------>  | | Nav | UserProfile        | |
+            | |     +-------------------------+ |                  | |     +--------------------+ |
+            | |     |                         | |                  | |     | UserProfilePreview | |
+            | +-----+-------------------------+ |                  | +-----+--------------------+ |
+            +-----------------------------------+                  +------------------------------+
+            </pre>
         </Alert>
-        <h1 class="center">router-link的用法</h1>
-        <h2 class="center">
-
-            <h3 class="red center">
-
-            </h3>
-        </h2>
-        <h3 style='margin-left:450px;' class="blue lf">
-
-        </h3>
+        <Alert type="success">4、嵌套路由的模板：
+            <pre>
+                 div
+                    h1 User Settings /h1
+                    NavBar/
+                    router-view/
+                    outer-view name="helper" /
+                /div
+            </pre>
+            <!-- UserSettings.vue -->
+        </Alert>
+        <Alert type="success">5、路由的设计：
+            <pre class="blue">
+              {
+                path: '/settings',
+                // 你也可以在顶级路由就配置命名视图
+                component: UserSettings,
+                children: [{
+                    path: 'emails',
+                    component: UserEmailsSubscriptions
+                }, {
+                    path: 'profile',
+                    components: {
+                    default: UserProfile,
+                    helper: UserProfilePreview
+                    }
+                }]
+               }
+            </pre>
+        </Alert>
     </Card>
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      path: "veurouter"
+    };
   }
 };
 </script>

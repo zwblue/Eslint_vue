@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div>ES</div>
+        <div>ES6</div>
     </div>
 </template>
 <script>

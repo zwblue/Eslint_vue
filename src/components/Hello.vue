@@ -22,7 +22,7 @@
   left: 20px;
 }
 .layout-nav {
-  float:right;
+  float: right;
   margin-right: 20px;
 }
 .left-sider {
@@ -33,7 +33,7 @@
   border-top: 1px solid #d7dde4;
   bottom: 0;
 }
-.content {
+.box-content {
   background: #f5f7f9;
   border-radius: 5px;
   position: absolute;
@@ -71,23 +71,24 @@
             <Header>
                 <Menu mode="horizontal" theme="dark" active-name="1">
                     <div class="layout-logo">
-                      <Button type='ghost' style='color:#fff' @click="goRouter('')"><Icon type="home"></Icon> 我的主页</Button>
+                        <Button type='ghost' style='color:#fff' @click="goRouter('')">
+                            <Icon type="home"></Icon> 我的主页</Button>
                     </div>
                     <div class="layout-nav">
                         <MenuItem name="1">
-                            <Icon type="ios-navigate"></Icon>
-                            Item 1
+                        <Icon type="ios-navigate"></Icon>
+                        Item 1
                         </MenuItem>
                         <MenuItem name="2">
-                            <Icon type="ios-keypad"></Icon>
-                            Item 2
+                        <Icon type="ios-keypad"></Icon>
+                        Item 2
                         </MenuItem>
-                       
+
                         <MenuItem name="4">
-                            <Icon type="ios-paper"></Icon>
-                            Item 4
+                        <Icon type="ios-paper"></Icon>
+                        Item 4
                         </MenuItem>
-                         <Submenu name="3">
+                        <Submenu name="3">
                             <template slot="title">
                                 <Icon type="ios-analytics"></Icon>
                                 Item 3
@@ -108,23 +109,23 @@
             <Layout class="layContent">
                 <Sider hide-trigger class="left-sider">
                     <Menu :active-name="activeName" theme="dark" @on-select='selectMenu' width="auto" :open-names="openSubmenu">
-                        <Submenu :name='menu.title' v-for='menu in menus' :key='menu.title' >
+                        <Submenu :name='menu.title' v-for='menu in menus' :key='menu.title'>
                             <template slot="title">
                                 <Icon type="ios-navigate"></Icon>
-                               {{menu.title}}
+                                {{menu.title}}
                             </template>
-                             <MenuItem :name="list.value" v-for="list in menu.children" :key='list.value'>{{list.title}}</MenuItem>
+                            <MenuItem :name="list.value" v-for="list in menu.children" :key='list.value'>{{list.title}}</MenuItem>
                         </Submenu>
                     </Menu>
                 </Sider>
-                <Layout class="content">
-                    <Breadcrumb style="margin:15px 15px" >
+                <Layout class="box-content">
+                    <Breadcrumb style="margin:15px 15px">
                         <BreadcrumbItem>Home</BreadcrumbItem>
                         <BreadcrumbItem>Components</BreadcrumbItem>
                         <BreadcrumbItem>Layout</BreadcrumbItem>
                     </Breadcrumb>
-                    <Content  class="mycontent">
-                            <router-view/>
+                    <Content class="mycontent">
+                        <router-view/>
                     </Content>
                 </Layout>
             </Layout>
@@ -139,12 +140,12 @@ export default {
       openSubmenu: ["练习测试"],
       menus: [
         {
-          title:"练习测试" ,
+          title: "练习测试",
           children: [
             { title: "vuex", value: "vuex" },
             { title: "vue-router", value: "vuerouter" },
             { title: "es6", value: "es" },
-             { title: "vue", value: "vueIndex" }
+            { title: "vue", value: "vueIndex" }
           ]
         },
         {
@@ -164,13 +165,13 @@ export default {
   methods: {
     goRouter(name) {
       console.log("跳转的路由:", name);
-       console.log(this.$route)
-      this.$router.push("/"+name);
-       console.log(this.$route)
+      console.log(this.$route);
+      this.$router.push("/" + name);
+      console.log(this.$route);
     },
-    selectMenu(name){
-        console.log("当前展开的菜单为：",name);
-        this.goRouter(name);
+    selectMenu(name) {
+      console.log("当前展开的菜单为：", name);
+      this.goRouter(name);
     }
   }
 };
