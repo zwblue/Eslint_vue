@@ -43,6 +43,7 @@ export default {
 .content {
   flex: 1;
   padding:10px;
+  margin:0 20px;
   opacity: 0.9;
 }
 </style>
