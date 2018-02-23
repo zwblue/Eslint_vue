@@ -14,6 +14,7 @@ import router from "@/views/vuerouter/router";
 import route from "@/views/vuerouter/route";
 import vueIndex from "@/views/vue";
 import KeepAlive from "@/views/vue/KeepAlive";
+import Animate from "@/views/vue/vueAnimate";
 import Es from "@/views/es";
 import Home from "@/views/Home";
 Vue.use(Router);
@@ -63,15 +64,21 @@ export default new Router({
         meta: {
           rName: "vueIndex"
         },
-        children: []
-      },
-      {
-        path: "keepAlive",
-        name: "keepAlive",
-        component: KeepAlive,
-        meta: {
-          rName: "keepalive"
-        }
+        children: [{
+          path: "keepAlive",
+          name: "keepAlive",
+          component: KeepAlive,
+          meta: {
+            rName: "keepalive"
+          }
+        },{
+          path: "animate",
+          name: "animate",
+          component: Animate,
+          meta: {
+            rName: "animate"
+          }
+        }]
       },
       {
         path: "vuerouter",

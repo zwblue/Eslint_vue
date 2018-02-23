@@ -1,25 +1,34 @@
 <template>
     <div>
         <div class="page">
-            <Row :gutter='36'>
-                <Col span="2" v-for='list in  buttonList' :key='list.buttonName'>
-                    <Button type='primary' @click="$router.push(list.buttonName)">{{list.buttonName}}</Button>
-                </Col>
-            </Row> 
-            <div style='height:100%;margin-top:10px;'>
-                <router-view/> 
+            <div class="title">
+                <Button type='primary' @click="goRouter('/vueIndex/keepAlive')">
+                    keepAlive的用法
+                </Button>
+                <Button type='ghost' @click="goRouter('/vueIndex/animate')">
+                    vue动画的案例
+                </Button>
+            </div>
+            <div class="content">
+                <router-view/>
             </div>
         </div>
     </div>
 </template>
 <script>
-var $ = require('jquery')
+var $ = require("jquery");
 export default {
-  data () {
+  data() {
     return {
-        buttonList:[{buttonName:'keepAlive'}]
+      buttonList: [{ buttonName: "keepAlive" }]
+    };
+  },
+  methods: {
+    goRouter(name) {
+      console.log(222, name);
+      this.$router.push(name);
     }
   },
-  mounted () {}
-}
+  mounted() {}
+};
 </script>
