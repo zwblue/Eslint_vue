@@ -5,13 +5,21 @@
               {{title}}
           </h2>
       </div>
+      <div>
+          <my-home :mytitle='title' :zyname="name"></my-home>
+      </div>
   </div>
 </template>
 <script>
+import myHome from './myhome'
 export default {
+    components:{
+        myHome
+    },
   data(){
       return{
-          title:'我的主页'
+          title:'我的主页',
+          name:'张阳'
       }
   }
 }
