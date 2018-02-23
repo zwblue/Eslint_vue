@@ -16,6 +16,7 @@ import vueIndex from "@/views/vue";
 import KeepAlive from "@/views/vue/KeepAlive";
 import Animate from "@/views/vue/vueAnimate";
 import Es from "@/views/es";
+import Es6 from "@/views/es/es6";
 import Home from "@/views/Home";
 Vue.use(Router);
 export default new Router({
@@ -71,7 +72,7 @@ export default new Router({
           meta: {
             rName: "keepalive"
           }
-        },{
+        }, {
           path: "animate",
           name: "animate",
           component: Animate,
@@ -136,7 +137,15 @@ export default new Router({
         component: Es,
         meta: {
           rName: "es"
-        }
+        },
+        children: [{
+          path: "es6",
+          name: "es6",
+          component: Es6,
+          meta: {
+            rName: "es6"
+          },
+        }]
       },
       {
         path: "orgchart",
