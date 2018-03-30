@@ -7,6 +7,15 @@
 .red{
    color:red;
 }
+.warning{
+    color:#ff9900;
+}
+.success{
+    color:#19be6b;
+}
+.primary{
+    color:#2d8cf0
+}
 .blue{
     color: #2d8cf0!important;
 }

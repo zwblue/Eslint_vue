@@ -22,6 +22,7 @@ const vueIndex = r => require.ensure([], () => r(require('@/views/vue')), 'vue�
 const vueIs = r => require.ensure([], () => r(require('@/views/vue/vueIs')), 'vue中is的用法')
 const KeepAlive = r => require.ensure([], () => r(require('@/views/vue/KeepAlive')), 'vue中KeepAlive的用法')
 const Animate = r => require.ensure([], () => r(require('@/views/vue/vueAnimate')), 'vue中vueAnimate的用法')
+const solts = r => require.ensure([], () => r(require('@/views/vue/vue-solt')), 'vue中vueAnimate的用法')
 // ES相关知识
 const Es = r => require.ensure([], () => r(require('@/views/es')), 'es相关的知识')
 const Es6 = r => require.ensure([], () => r(require('@/views/es/es6')), 'es6相关的知识')
@@ -65,6 +66,7 @@ export default new Router({
           }
         ]
       },
+      // vue相关的子路由与子组件
       {
         path: "vueIndex",
         name: "vueIndex",
@@ -92,6 +94,13 @@ export default new Router({
           component: vueIs,
           meta: {
             rName: "vueIs"
+          }
+        },{
+          path: "solts",
+          name: "solts",
+          component: solts,
+          meta: {
+            rName: "solts"
           }
         }]
       },
