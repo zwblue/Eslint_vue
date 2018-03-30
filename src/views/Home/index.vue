@@ -19,7 +19,7 @@ export default {
   data(){
       return{
           title:'我的主页',
-          name:'张阳'
+          name:'zw'
       }
   }
 }

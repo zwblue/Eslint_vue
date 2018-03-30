@@ -8,6 +8,12 @@
                 <Button type='ghost' @click="goRouter('/vueIndex/animate')">
                     vue动画的案例
                 </Button>
+                 <Button type='error' @click="goRouter('/vueIndex/vueis')">
+                    vue渲染不同的组件的方法
+                </Button>
+                 <Button type='warning' @click="goRouter('/vueIndex/vueis')">
+                    vue 插槽solt的用法
+                </Button>
             </div>
             <div class="content">
                 <router-view/>

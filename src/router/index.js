@@ -1,28 +1,35 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Hello from "@/components/Hello";
-import OrgChart from "@/views/orgchart";
-import Vuex from "@/views/vuex";
-import State from "@/views/vuex/state";
-import Getter from "@/views/vuex/getter";
-import Vuerouter from "@/views/vuerouter";
-import routerLink from "@/views/vuerouter/routerLink";
-import routerView from "@/views/vuerouter/routerView";
-import Bar from "@/views/vuerouter/routerView/test/Bar";
-import Baz from "@/views/vuerouter/routerView/test/Baz";
-import router from "@/views/vuerouter/router";
-import route from "@/views/vuerouter/route";
-import vueIndex from "@/views/vue";
-import KeepAlive from "@/views/vue/KeepAlive";
-import Animate from "@/views/vue/vueAnimate";
-import Es from "@/views/es";
-import Es6 from "@/views/es/es6";
-import Home from "@/views/Home";
+// 页面布局
+const leftSider = r => require.ensure([], () => r(require('@/components/leftSider')), '左边导航')
+const Home = r => require.ensure([], () => r(require('@/views/Home')), '我的个人主页')
+// 插件的用法
+const OrgChart = r => require.ensure([], () => r(require('@/views/orgchart')), '组织树插件的引入')
+// vuex的用法
+const Vuex = r => require.ensure([], () => r(require('@/views/vuex')), 'vuex相关的用法')
+const State = r => require.ensure([], () => r(require('@/views/vuex/state')), 'store中state的用法')
+const Getter = r => require.ensure([], () => r(require('@/views/vuex/getter')), 'store中getter的用法')
+// vue-router的用法
+const Vuerouter = r => require.ensure([], () => r(require('@/views/vuerouter')), 'vueRouter相关的用法')
+const routerLink = r => require.ensure([], () => r(require('@/views/vuerouter/routerLink')), 'routerLink相关的用法')
+const routerView = r => require.ensure([], () => r(require('@/views/vuerouter/routerView')), 'routerView相关的用法')
+const Bar = r => require.ensure([], () => r(require('@/views/vuerouter/routerView/test/Bar')), 'routerView相关的用法')
+const Baz = r => require.ensure([], () => r(require('@/views/vuerouter/routerView/test/Baz')), 'routerView相关的用法')
+const router = r => require.ensure([], () => r(require('@/views/vuerouter/router')), '$router相关的知识')
+const route = r => require.ensure([], () => r(require('@/views/vuerouter/route')), '$route相关的知识')
+// vue的相关知识
+const vueIndex = r => require.ensure([], () => r(require('@/views/vue')), 'vue相关的知识')
+const vueIs = r => require.ensure([], () => r(require('@/views/vue/vueIs')), 'vue中is的用法')
+const KeepAlive = r => require.ensure([], () => r(require('@/views/vue/KeepAlive')), 'vue中KeepAlive的用法')
+const Animate = r => require.ensure([], () => r(require('@/views/vue/vueAnimate')), 'vue中vueAnimate的用法')
+// ES相关知识
+const Es = r => require.ensure([], () => r(require('@/views/es')), 'es相关的知识')
+const Es6 = r => require.ensure([], () => r(require('@/views/es/es6')), 'es6相关的知识')
 Vue.use(Router);
 export default new Router({
   routes: [{
     path: "/",
-    component: Hello,
+    component: leftSider,
     children: [{
         path: "",
         name: "Home",
@@ -78,6 +85,13 @@ export default new Router({
           component: Animate,
           meta: {
             rName: "animate"
+          }
+        }, {
+          path: "vueis",
+          name: "vueis",
+          component: vueIs,
+          meta: {
+            rName: "vueIs"
           }
         }]
       },
