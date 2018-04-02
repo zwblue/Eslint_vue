@@ -13,6 +13,9 @@
       <Button type='error' @click="goRouter('/vuerouter/route')">
         $route的用法
       </Button>
+      <Button type='warning' @click="goRouter('/vuerouter/route')">
+        在router.js中的小知识
+      </Button>
     </div>
     <div class="content">
       <router-view/>

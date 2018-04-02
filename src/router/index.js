@@ -1,5 +1,8 @@
 import Vue from "vue";
 import Router from "vue-router";
+import store from '../store/index'
+// 在路由中用store中的数据
+console.log(11111111,store.state.vuexExample.username);
 // 页面布局
 const leftSider = r => require.ensure([], () => r(require('@/components/leftSider')), '左边导航')
 const Home = r => require.ensure([], () => r(require('@/views/Home')), '我的个人主页')
@@ -13,6 +16,7 @@ const Mutation = r => require.ensure([], () => r(require('@/views/vuex/mutation'
 const Action = r => require.ensure([], () => r(require('@/views/vuex/action')), 'store中Action的用法')
 // vue-router的用法
 const Vuerouter = r => require.ensure([], () => r(require('@/views/vuerouter')), 'vueRouter相关的用法')
+const routerKns = r => require.ensure([], () => r(require('@/views/vuerouter/routerKns')), 'router相关的用法')
 const routerLink = r => require.ensure([], () => r(require('@/views/vuerouter/routerLink')), 'routerLink相关的用法')
 const routerView = r => require.ensure([], () => r(require('@/views/vuerouter/routerView')), 'routerView相关的用法')
 const Bar = r => require.ensure([], () => r(require('@/views/vuerouter/routerView/test/Bar')), 'routerView相关的用法')
@@ -29,7 +33,7 @@ const solts = r => require.ensure([], () => r(require('@/views/vue/vue-solt')), 
 const Es = r => require.ensure([], () => r(require('@/views/es')), 'es相关的知识')
 const Es6 = r => require.ensure([], () => r(require('@/views/es/es6')), 'es6相关的知识')
 Vue.use(Router);
-export default new Router({
+const router1= new Router({
   routes: [{
     path: "/",
     component: leftSider,
@@ -131,7 +135,16 @@ export default new Router({
         meta: {
           rName: "vuerouter"
         },
-        children: [{
+        redirect:'vuerouter/routerKns',
+        children: [
+          {
+            path: "routerKns",
+            name: "routerKns",
+            component: routerKns,
+            meta: {
+              rName: "routerKns"
+            }
+          },{
             path: "routerlink",
             name: "routerlink",
             component: routerLink,
@@ -198,3 +211,4 @@ export default new Router({
     ]
   }]
 });
+export default router1;
