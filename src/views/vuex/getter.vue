@@ -1,7 +1,7 @@
 <template>
     <div>
-        <Alert type="success">this.$store.getters.doneDate：<span style="color:red;">{{$store.getters.doneDate}}</span></Alert>
-        <Alert type="error">...mapGetters(['doneDate'])：<span style="color:red;">{{doneDate}}</span></Alert>
+        <Alert type="success">this.$store.getters['vuexExample/doneDate']：<span style="color:red;">{{username}}</span></Alert>
+        <Alert type="error">...mapGetters({doneDate:'vuexExample/doneDate'})：<span style="color:red;">{{doneDate}}</span></Alert>
         <Alert type="error">import {mapGetters} from 'vuex'</Alert>
     </div>
 </template>
@@ -12,9 +12,14 @@ export default {
     return {};
   },
   computed:{
-      ...mapGetters(['doneDate'])
+      username(){
+          return this.$store.getters['vuexExample/doneDate'];
+      }
+      ,
+      ...mapGetters({doneDate:'vuexExample/doneDate'})
   },
   mounted(){
+      console.log(this.$store)
   }
 };
 </script>
