@@ -5,6 +5,15 @@ import myes6 from './myes6'
 import myvue from './myvue'
 import myvuerouter from './myvuerouter'
 import myvuex from './myvuex'
+
+// 在路由中用store中的数据
+console.log(11111111,store.state.vuexExample.username);
+// 页面布局
+const leftSider = r => require.ensure([], () => r(require('@/components/leftSider')), '左边导航')
+const Home = r => require.ensure([], () => r(require('@/views/Home')), '我的个人主页')
+// 插件的用法
+const OrgChart = r => require.ensure([], () => r(require('@/views/orgchart')), '组织树插件的引入')
+
 let routerArray=[{
   path: "",
   name: "Home",
@@ -23,17 +32,8 @@ function addRouters(...arg){
   routerArray.push(...arg);
 }
 addRouters(myes6.routes,myvue.routes,myvuerouter.routes,myvuex.routes)
-// 在路由中用store中的数据
-console.log(11111111,store.state.vuexExample.username);
-// 页面布局
-const leftSider = r => require.ensure([], () => r(require('@/components/leftSider')), '左边导航')
-const Home = r => require.ensure([], () => r(require('@/views/Home')), '我的个人主页')
-// 插件的用法
-const OrgChart = r => require.ensure([], () => r(require('@/views/orgchart')), '组织树插件的引入')
 
 Vue.use(Router);
-
-
 const router1= new Router({
   routes: [{
     path: "/",
