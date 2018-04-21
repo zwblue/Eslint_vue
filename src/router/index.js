@@ -42,3 +42,12 @@ const router1= new Router({
   }]
 });
 export default router1;
+router1.beforeEach((to, from, next) => {
+  store.commit('routerdata/resetBreadcrumbList')
+  for (let val of to.matched) {
+    if ('rName' in val.meta) {
+      store.state.routerdata.breadcrumbList.push(val.meta.rName)
+    }
+  }
+  next()
+})

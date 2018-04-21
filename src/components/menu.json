@@ -1,0 +1,32 @@
+{"menus":[
+        {
+      "title": "练习测试",
+      "children": [
+                { "title": "vuex", "value": "vuex"
+                },
+                { "title": "vue-router", "value": "vuerouter"
+                },
+                { "title": "es6", "value": "es"
+                },
+                { "title": "vue", "value": "vueIndex"
+                }
+            ]
+        },
+        {
+      "title": "方法收集",
+      "children": [
+                { "title": "常用方法", "value": "oftenfun"
+                },
+                { "title": "常用API", "value": "oftenapi"
+                }
+            ]
+        },
+        {
+      "title": "插件",
+      "children": [
+                { "title": "orgchart", "value": "orgchart"
+                }
+            ]
+        }
+    ]
+}
