@@ -6,7 +6,6 @@ let store={
     mutations:{
         resetBreadcrumbList(state){
             state.breadcrumbList=[];
-            console.log(1111111,state.breadcrumbList);
         }
     },
     getters:{
