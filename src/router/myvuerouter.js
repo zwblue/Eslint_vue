@@ -3,6 +3,7 @@ const Vuerouter = r => require.ensure([], () => r(require('@/views/vuerouter')),
 const routerKns = r => require.ensure([], () => r(require('@/views/vuerouter/routerKns')), 'router相关的用法')
 const routerLink = r => require.ensure([], () => r(require('@/views/vuerouter/routerLink')), 'routerLink相关的用法')
 const routerView = r => require.ensure([], () => r(require('@/views/vuerouter/routerView')), 'routerView相关的用法')
+const routerBeforeEach = r => require.ensure([], () => r(require('@/views/vuerouter/routerBeforeEach')), '路由守卫相关的用法')
 const Bar = r => require.ensure([], () => r(require('@/views/vuerouter/routerView/test/Bar')), 'routerView相关的用法')
 const Baz = r => require.ensure([], () => r(require('@/views/vuerouter/routerView/test/Baz')), 'routerView相关的用法')
 const router = r => require.ensure([], () => r(require('@/views/vuerouter/router')), '$router相关的知识')
@@ -29,6 +30,14 @@ let routes={
         component: routerLink,
         meta: {
           rName: "routerLink"
+        }
+      },
+      {
+        path: "routerBeforeEach",
+        name: "routerBeforeEach",
+        component: routerBeforeEach,
+        meta: {
+          rName: "routerBeforeEach"
         }
       },
       {

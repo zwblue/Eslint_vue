@@ -1,4 +1,4 @@
-<style scoped>
+<style scoped lang='scss'>
 .layout {
   border: 1px solid #d7dde4;
   background: #f5f7f9;
@@ -27,7 +27,6 @@
   float: right;
   margin-right: 20px;
 }
-
 .left-sider {
   z-index: 9999;
   position: absolute;
@@ -62,14 +61,12 @@
   overflow-y: auto;
 }
 </style>
-
 <style>
 .myhome .ivu-layout-header {
   padding: 0;
   padding-left: 35px;
 }
 </style>
-
 <template>
   <div class="layout myhome">
     <Layout>
@@ -98,28 +95,28 @@
                 <Icon type="ios-analytics"></Icon>
                 Item 3
               </template>
-                            <MenuGroup title="使用">
-                                <MenuItem name="3-1">新增和启动</MenuItem>
-                                <MenuItem name="3-2">活跃分析</MenuItem>
-                                <MenuItem name="3-3">时段分析</MenuItem>
-                            </MenuGroup>
-                            <MenuGroup title="留存">
-                                <MenuItem name="3-4">用户留存</MenuItem>
-                                <MenuItem name="3-5">流失用户</MenuItem>
-                            </MenuGroup>
-                        </Submenu>
-                    </div>
-                </Menu>
-            </Header>
-            <Layout class="layContent">
-                <Sider hide-trigger class="left-sider">
-                    <Menu :active-name="activeName" theme="dark" @on-select='selectMenu' width="auto" :open-names="openSubmenu">
-                        <Submenu :name='menu.title' v-for='menu in menus' :key='menu.title'>
-<template slot="title">
-  <Icon type="ios-navigate">
-  </Icon>
-  {{menu.title}}
-</template>
+              <MenuGroup title="使用">
+                <MenuItem name="3-1">新增和启动</MenuItem>
+                <MenuItem name="3-2">活跃分析</MenuItem>
+                <MenuItem name="3-3">时段分析</MenuItem>
+              </MenuGroup>
+              <MenuGroup title="留存">
+                <MenuItem name="3-4">用户留存</MenuItem>
+                <MenuItem name="3-5">流失用户</MenuItem>
+              </MenuGroup>
+            </Submenu>
+          </div>
+        </Menu>
+      </Header>
+      <Layout class="layContent">
+        <Sider hide-trigger class="left-sider">
+          <Menu :active-name="activeName" theme="dark" @on-select='selectMenu' width="auto" :open-names="openSubmenu">
+            <Submenu :name='menu.title' v-for='menu in menus' :key='menu.title'>
+              <template slot="title">
+                <Icon type="ios-navigate">
+                </Icon>
+                {{menu.title}}
+              </template>
                             <MenuItem :name="list.value" v-for="list in menu.children" :key='list.value'>{{list.title}}</MenuItem>
                         </Submenu>
                     </Menu>
@@ -142,15 +139,15 @@ export default {
     return {
       activeName: "",
       openSubmenu: ["练习测试"],
-      menus: null,
+      menus: null
     };
   },
   created() {
     this.menus = require("./menu.json").menus;
   },
-  computed:{
+  computed: {
     // 通过路由改变菜单的值
-    storeBreadcrumb(){
+    storeBreadcrumb() {
       return this.$store.state.routerdata.breadcrumbList;
     }
   },
