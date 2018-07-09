@@ -6,18 +6,21 @@ import myvue from './myvue'
 import myvuerouter from './myvuerouter'
 import myvuex from './myvuex'
 import myplugins from './myplugins'
+import { resolve } from "url";
 // 在路由中用store中的数据
-console.log(11111111,store.state.vuexExample.username);
+console.log(11111111, store.state.vuexExample.username);
 // 页面布局
-const leftSider = r => require.ensure([], () => r(require('@/components/leftSider')), '左边导航')
-const Home = r => require.ensure([], () => r(require('@/views/Home')), '我的个人主页')
-// 插件的用法
-const OrgChart = r => require.ensure([], () => r(require('@/views/orgchart')), '组织树插件的引入')
 
-let routerArray=[{
+// 非懒加载方式
+//import Orgchart from '@/views/orgchart'
+
+// 插件的用法
+// const OrgChart = r => require.ensure([], () => r(require('@/views/orgchart')), '组织树插件的引入')
+
+let routerArray = [{
   path: "",
   name: "Home",
-  component: Home,
+  component: resolve => require(['@/views/Home'], resolve),//我的个人主页    懒加载方式
   meta: {
     rName: "我的主页"
   }
@@ -25,19 +28,16 @@ let routerArray=[{
 {
   path: "orgchart",
   name: "orgchart",
-  component: OrgChart
+  component:  resolve =>require(['@/views/orgchart'], resolve)//组织树插件的引入
 }];
 
-function addRouters(...arg){
-  routerArray.push(...arg);
-}
-addRouters(myes6.routes,myvue.routes,myvuerouter.routes,myvuex.routes,myplugins.routes)
-
+// 将各个路由中的拼接成一个整的路由
+routerArray = routerArray.concat(myes6.routes, myvue.routes, myvuerouter.routes, myvuex.routes, myplugins.routes);
 Vue.use(Router);
-const router1= new Router({
+const router1 = new Router({
   routes: [{
     path: "/",
-    component: leftSider,
+    component: resolve => require(['@/components/leftSider'], resolve),//'左边导航'
     children: routerArray
   }]
 });
