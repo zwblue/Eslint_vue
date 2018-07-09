@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Card>
+        <Card class="title">
             <Button type='success' @click="forOfStr('zuowang')">
                 for..of...字符串
             </Button>
@@ -112,5 +112,10 @@ export default {
 };
 </script>
 <style scoped>
-
+.title{
+  text-align: left;
+}
+  .title button{
+    margin:10px 0;
+  }
 </style>

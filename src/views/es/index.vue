@@ -5,6 +5,9 @@
                 <Button type='primary' @click="goRouter('/es/es6')">
                     ECMAScript 6
                 </Button>
+                 <Button type='warning' @click="goRouter('/es/module')">
+                     module的语法
+                </Button>
             </div>
             <div class="content">
                 <router-view/>
