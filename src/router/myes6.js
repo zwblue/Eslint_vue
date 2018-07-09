@@ -1,7 +1,6 @@
 
 // ES相关知识
 // const Es = r => require.ensure([], () => r(require('@/views/es')), 'es相关的知识')
-// component: resolve => require(['@/views/Home'], resolve),//我的个人主页    懒加载方式
 // const Es6 = r => require.ensure([], () => r(require('@/views/es/es6')), 'es6相关的知识')
 let routes = {
   path: "es",
