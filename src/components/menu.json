@@ -25,6 +25,8 @@
       "title": "插件",
       "children": [
                 { "title": "orgchart", "value": "orgchart"
+                },
+                { "title": "elementTree", "value": "elementTree"
                 }
             ]
         }

@@ -5,7 +5,7 @@ import myes6 from './myes6'
 import myvue from './myvue'
 import myvuerouter from './myvuerouter'
 import myvuex from './myvuex'
-
+import myplugins from './myplugins'
 // 在路由中用store中的数据
 console.log(11111111,store.state.vuexExample.username);
 // 页面布局
@@ -31,7 +31,7 @@ let routerArray=[{
 function addRouters(...arg){
   routerArray.push(...arg);
 }
-addRouters(myes6.routes,myvue.routes,myvuerouter.routes,myvuex.routes)
+addRouters(myes6.routes,myvue.routes,myvuerouter.routes,myvuex.routes,myplugins.routes)
 
 Vue.use(Router);
 const router1= new Router({
