@@ -45,6 +45,8 @@ const router1 = new Router({
   }]
 });
 export default router1;
+// 路由拦截 根据登录进行的
+// 根据路由进行面包栏设置
 router1.beforeEach((to, from, next) => {
   store.commit('routerdata/resetBreadcrumbList')
   for (let val of to.matched) {
@@ -52,5 +54,17 @@ router1.beforeEach((to, from, next) => {
       store.state.routerdata.breadcrumbList.push(val.meta.rName)
     }
   }
-  next()
+  if (sessionStorage.getItem('isLogin')) {
+    if (to.path === '/login') {
+      next('/')
+    } else {
+      next()
+    }
+  } else {
+    if (to.path === '/login') {
+      next()
+    } else {
+      next('/login')
+    }
+  }
 })
