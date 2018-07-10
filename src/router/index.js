@@ -28,7 +28,7 @@ let routerArray = [{
 {
   path: "orgchart",
   name: "orgchart",
-  component:  resolve =>require(['@/views/orgchart'], resolve)//组织树插件的引入
+  component: resolve => require(['@/views/orgchart'], resolve)//组织树插件的引入
 }];
 
 // 将各个路由中的拼接成一个整的路由
@@ -39,6 +39,9 @@ const router1 = new Router({
     path: "/",
     component: resolve => require(['@/components/leftSider'], resolve),//'左边导航'
     children: routerArray
+  }, {
+    path: "/login",
+    component: resolve => require(['@/views/login/login.vue'], resolve),//'登录页面'
   }]
 });
 export default router1;
