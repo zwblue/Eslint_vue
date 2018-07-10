@@ -25,9 +25,9 @@
                 <div>
                     <Form-item style='display:block;'>
                         <Button type="primary" class="login-btn" size="large" long :loading="isLoading" @click="handleSubmit('loginForm')">
-              <span v-if="!isLoading">登 录</span>
-              <span v-else>Loading...</span>
-            </Button>
+                                <span v-if="!isLoading">登 录</span>
+                                <span v-else>Loading...</span>
+                            </Button>
                     </Form-item>
                 </div>
             </Form>
@@ -99,17 +99,19 @@ export default {
                 this.$Message.error("密码不能为空！");
                 return false;
             }
-            sendCode(this.loginForm).then(res => {
-                console.log(res);
-                if (res.data.code == 0) {
-                    this.$Message.success("发送成功！");
-                    this.countTime();
-                } else {
-                    this.$Message.error(res.data.msg);
-                }
-            }).catch(err => {
-                this.$Message.error("系统异常，请重试！");
-            });
+            sendCode(this.loginForm)
+                .then(res => {
+                    console.log(res);
+                    if (res.data.code == 0) {
+                        this.$Message.success("发送成功！");
+                        this.countTime();
+                    } else {
+                        this.$Message.error(res.data.msg);
+                    }
+                })
+                .catch(err => {
+                    this.$Message.error("系统异常，请重试！");
+                });
         },
         handleSubmit(name) {
             if (!this.loginForm.code) {
@@ -119,42 +121,35 @@ export default {
             this.$refs[name].validate(valid => {
                 if (valid) {
                     this.isLoading = true;
-                    console.log(this.loginForm)
-                    http('/user/login',this.loginForm)
-                        .then(res => {
-                            console.log(111111111,res)
-                            if (res.data.code === 0) {
-                                const token = res.data.data.token;
-                                this.isLoading = false;
-                                sessionStorage.setItem("isLogin", true);
-                                const userDetails = {
-                                    upwd: this.loginForm.password,
-                                    username: res.data.data.user.name,
-                                    loginId: res.data.data.user.empid,
-                                    oaPwd: res.data.data.user.oaPwd,
-                                    userId: res.data.data.user.id,
-                                    companyId: res.data.data.user.companyId
-                                };
-                                localStorage.setItem(
-                                    "userDetails",
-                                    JSON.stringify(userDetails)
-                                );
-                                localStorage.setItem("token", token);
-                                clearInterval(this.timer);
-                                this.$router.push("/");
-                            } else {
-                                this.isLoading = false;
-                            }
-                        })
-                        .catch(err => {
-                            this.isLoading = false;
-                            console.log(555);
-                            this.$Message.error("系统异常，请重试！");
-                        });
+                    console.log(this.loginForm);
+                    this.login();
+                    // 这里面直接嵌套await会出错
                 } else {
                     this.$Message.error("表单验证失败");
                 }
             });
+        },
+        async login() {
+            const res = await http("/user/login", this.loginForm);
+            if (res.data.code === 0) {
+                const token = res.data.data.token;
+                this.isLoading = false;
+                sessionStorage.setItem("isLogin", true);
+                const userDetails = {
+                    upwd: this.loginForm.password,
+                    username: res.data.data.user.name,
+                    loginId: res.data.data.user.empid,
+                    oaPwd: res.data.data.user.oaPwd,
+                    userId: res.data.data.user.id,
+                    companyId: res.data.data.user.companyId
+                };
+                localStorage.setItem("userDetails", JSON.stringify(userDetails));
+                localStorage.setItem("token", token);
+                clearInterval(this.timer);
+                this.$router.push("/");
+            } else {
+                this.isLoading = false;
+            }
         }
     }
 };
@@ -186,7 +181,7 @@ export default {
 
 .loginDiv .my-input .ivu-form-item-error .ivu-input-group-append,
 .ivu-form-item-error .ivu-input-group-prepend {
-    background: #F0F5F9;
+    background: #f0f5f9;
 }
 
 .my-input input {
@@ -200,7 +195,7 @@ export default {
     display: inline-block;
     line-height: 2;
     color: #333;
-    border-bottom: 4px solid #176CE0;
+    border-bottom: 4px solid #176ce0;
     margin-bottom: 48px;
 }
 
@@ -235,7 +230,7 @@ export default {
 }
 
 .my-input {
-    background: #F0F5F9;
+    background: #f0f5f9;
 }
 
 .login-btn {
@@ -272,7 +267,7 @@ export default {
     transform: translate(-50%, -40%);
     width: 1057px;
     height: 545.6px;
-    background: url('./login_box.png') no-repeat;
+    background: url("./login_box.png") no-repeat;
     background-size: 100%;
 }
 
