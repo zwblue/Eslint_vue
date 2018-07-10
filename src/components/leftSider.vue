@@ -27,6 +27,7 @@
   float: right;
   margin-right: 20px;
 }
+
 .left-sider {
   z-index: 9999;
   position: absolute;
@@ -112,11 +113,11 @@
         <Sider hide-trigger class="left-sider">
           <Menu :active-name="activeName" theme="dark" @on-select='selectMenu' width="auto" :open-names="openSubmenu">
             <Submenu :name='menu.title' v-for='menu in menus' :key='menu.title'>
-              <template slot="title">
-                <Icon type="ios-navigate">
-                </Icon>
-                {{menu.title}}
-              </template>
+                                <template slot="title">
+                                  <Icon type="ios-navigate">
+                                  </Icon>
+                                  {{menu.title}}
+                                </template>
                             <MenuItem :name="list.value" v-for="list in menu.children" :key='list.value'>{{list.title}}</MenuItem>
                         </Submenu>
                     </Menu>
@@ -149,6 +150,20 @@ export default {
     // 通过路由改变菜单的值
     storeBreadcrumb() {
       return this.$store.state.routerdata.breadcrumbList;
+    }
+  },
+  mounted(){
+    console.log('路由',this.$route);
+    if(this.$route.matched){
+      for(let val of this.$route.matched){
+        for(let menu of this.menus){
+           menu.children.forEach((val1)=>{
+             if(val1.value===val.name){
+                console.log(val1.value)
+             }
+           })
+        }
+      }
     }
   },
   methods: {
