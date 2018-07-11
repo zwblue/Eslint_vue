@@ -162,8 +162,8 @@ export default {
               console.log(val1.value)
               this.activeName = val1.value;
               this.$nextTick(() => {
-                this.openSubmenu.push(menu.title);
                 // console.log(this.$refs.menu)
+                this.openSubmenu.push(menu.title);//只增加这个是不能打开当前的菜单的，需要用下面这个
                 this.$refs.menu.updateOpened();
               })
               console.log(111, this.openSubmenu);
