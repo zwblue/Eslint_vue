@@ -158,7 +158,6 @@ export default {
   methods: {
     // 保存刷新前的路由 并打开当前的菜单并高亮
     openActiveMenu() {
-      console.log(2222222222, this.$route.matched)
       if (this.$route.matched) {
         for (let val of this.$route.matched) {
           for (let menu of this.menus) {
