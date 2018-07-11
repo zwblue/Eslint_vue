@@ -69,33 +69,33 @@
 }
 </style>
 <template>
-  <div class="layout myhome">
-    <Layout>
-      <Header>
-        <Menu mode="horizontal" theme="dark" active-name="1">
-          <div class="layout-logo">
-            <Button type='ghost' style='color:#fff' @click="goRouter('')">
+<div class="layout myhome">
+  <Layout>
+    <Header>
+      <Menu mode="horizontal" theme="dark" active-name="1">
+        <div class="layout-logo">
+          <Button type='ghost' style='color:#fff' @click="goRouter('')">
               <Icon type="home"></Icon> 我的主页</Button>
-          </div>
-          <div class="layout-nav">
-            <MenuItem name="1">
-            <Icon type="ios-navigate"></Icon>
-            Item 1
-            </MenuItem>
-            <MenuItem name="2">
-            <Icon type="ios-keypad"></Icon>
-            Item 2
-            </MenuItem>
+        </div>
+        <div class="layout-nav">
+          <MenuItem name="1">
+          <Icon type="ios-navigate"></Icon>
+          Item 1
+          </MenuItem>
+          <MenuItem name="2">
+          <Icon type="ios-keypad"></Icon>
+          Item 2
+          </MenuItem>
 
-            <MenuItem name="4">
-            <Icon type="ios-paper"></Icon>
-            Item 4
-            </MenuItem>
-            <Submenu name="3">
-              <template slot="title">
+          <MenuItem name="4">
+          <Icon type="ios-paper"></Icon>
+          Item 4
+          </MenuItem>
+          <Submenu name="3">
+            <template slot="title">
                 <Icon type="ios-analytics"></Icon>
                 Item 3
-              </template>
+</template>
               <MenuGroup title="使用">
                 <MenuItem name="3-1">新增和启动</MenuItem>
                 <MenuItem name="3-2">活跃分析</MenuItem>
@@ -111,13 +111,13 @@
       </Header>
       <Layout class="layContent">
         <Sider hide-trigger class="left-sider">
-          <Menu :active-name="activeName" theme="dark" @on-select='selectMenu' width="auto" :open-names="openSubmenu">
+          <Menu :active-name="activeName" theme="dark" @on-select='selectMenu' width="auto" ref='menu'  :open-names="openSubmenu">
             <Submenu :name='menu.title' v-for='menu in menus' :key='menu.title'>
-                                <template slot="title">
-                                  <Icon type="ios-navigate">
-                                  </Icon>
-                                  {{menu.title}}
-                                </template>
+<template slot="title">
+<Icon type="ios-navigate">
+</Icon>
+{{menu.title}}
+</template>
                             <MenuItem :name="list.value" v-for="list in menu.children" :key='list.value'>{{list.title}}</MenuItem>
                         </Submenu>
                     </Menu>
@@ -139,7 +139,7 @@ export default {
   data() {
     return {
       activeName: "",
-      openSubmenu: ["练习测试"],
+      openSubmenu: [],
       menus: null
     };
   },
@@ -152,16 +152,24 @@ export default {
       return this.$store.state.routerdata.breadcrumbList;
     }
   },
-  mounted(){
-    console.log('路由',this.$route);
-    if(this.$route.matched){
-      for(let val of this.$route.matched){
-        for(let menu of this.menus){
-           menu.children.forEach((val1)=>{
-             if(val1.value===val.name){
-                console.log(val1.value)
-             }
-           })
+  mounted() {
+    console.log('路由', this.$route);
+    if (this.$route.matched) {
+      for (let val of this.$route.matched) {
+        for (let menu of this.menus) {
+          menu.children.forEach((val1) => {
+            if (val1.value === val.name) {
+              console.log(val1.value)
+              this.activeName = val1.value;
+              this.$nextTick(() => {
+                this.openSubmenu.push(menu.title);
+                // console.log(this.$refs.menu)
+                this.$refs.menu.updateOpened();
+              })
+              console.log(111, this.openSubmenu);
+            }
+          })
+
         }
       }
     }
@@ -173,6 +181,7 @@ export default {
     },
     selectMenu(name) {
       console.log("当前展开的菜单为：", name);
+
       this.goRouter(name);
     }
   }
