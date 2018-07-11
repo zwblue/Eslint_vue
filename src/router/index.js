@@ -6,7 +6,6 @@ import myvue from './myvue'
 import myvuerouter from './myvuerouter'
 import myvuex from './myvuex'
 import myplugins from './myplugins'
-import { resolve } from "url";
 // 在路由中用store中的数据
 console.log(11111111, store.state.vuexExample.username);
 // 页面布局
