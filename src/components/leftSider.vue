@@ -153,35 +153,39 @@ export default {
     }
   },
   mounted() {
-    console.log('路由', this.$route);
-    if (this.$route.matched) {
-      for (let val of this.$route.matched) {
-        for (let menu of this.menus) {
-          menu.children.forEach((val1) => {
-            if (val1.value === val.name) {
-              console.log(val1.value)
-              this.activeName = val1.value;
-              this.$nextTick(() => {
-                // console.log(this.$refs.menu)
-                this.openSubmenu.push(menu.title);//只增加这个是不能打开当前的菜单的，需要用下面这个
-                this.$refs.menu.updateOpened();
-              })
-              console.log(111, this.openSubmenu);
-            }
-          })
-
-        }
-      }
-    }
+    this.openActiveMenu();
   },
   methods: {
+    // 保存刷新前的路由 并打开当前的菜单并高亮
+    openActiveMenu() {
+      console.log(2222222222, this.$route.matched)
+      if (this.$route.matched) {
+        for (let val of this.$route.matched) {
+          for (let menu of this.menus) {
+            menu.children.forEach((val1) => {
+              if (val1.value === val.name) {
+                console.log(val1.value)
+                this.activeName = val1.value;
+                this.$nextTick(() => {
+                  this.openSubmenu.push(menu.title); //只增加这个是不能打开当前的菜单的，需要用下面这个
+                  this.$refs.menu.updateOpened();
+                })
+                console.log(111, this.openSubmenu);
+              }
+            })
+
+          }
+        }
+      }
+    },
+    // 跳转的路由
     goRouter(name) {
       console.log("跳转的路由:", name);
       this.$router.push("/" + name);
     },
+    //menu自带的选择菜单时的方法
     selectMenu(name) {
       console.log("当前展开的菜单为：", name);
-
       this.goRouter(name);
     }
   }
