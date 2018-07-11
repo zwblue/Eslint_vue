@@ -1,4 +1,3 @@
-import Vue from 'vue';
 let store={
     namespaced: true,
     state:{
